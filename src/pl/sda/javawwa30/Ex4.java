@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class Ex3 {
+public class Ex4 {
 
     public static void main(String[] args) {
         String html = getText("examplewww.txt");
