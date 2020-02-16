@@ -14,8 +14,8 @@ public class RegExUtil {
                 System.out.println(matcher.group().trim());
             }
 
-            System.out.println("Start index: " + matcher.start());
-            System.out.println("End index: " + matcher.end());
+            //System.out.println("Start index: " + matcher.start());
+            //System.out.println("End index: " + matcher.end());
         }
         System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ");
     }
