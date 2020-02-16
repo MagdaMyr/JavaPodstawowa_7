@@ -34,4 +34,7 @@ public class Author {
             return true;
     }
 
+    public String getName() {
+        return name;
+    }
 }
