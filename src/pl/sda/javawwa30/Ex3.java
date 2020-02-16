@@ -11,6 +11,11 @@ public class Ex3 {
 
         //RegEx: email
         //RegEx: telefon polski - examples: +48 58 551 22 89,  + 48 602 593 826
+
+        String phoneRegEx = "(\\+ |\\+)\\d{2}( |)(\\d{2} \\d{3} \\d{2} \\d{2}|\\d{3} \\d{3} \\d{3})";
+        RegExUtil.printRegexResults(phoneRegEx, html);
+        //+ num typu yyy yyy yyy: ((\+ |\+)\d{2}( |))?(\d{2} \d{3} \d{2} \d{2}|\d{3} \d{3} \d{3})
+        //(\+| \+ )48( |)?[0-9 ]{5,16} - wykorzystuje znaki od 0 do 9 i ' ' w dowolnej kombinacji od 5 do 16 razy
     }
 
     public static String getText(String path) {
