@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<!--[if lt IE 8]><![endif]-->
+<!--[if lt IE 9]><script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script><![endif]-->
+<html lang="pl">
+<head>
+<title>Kontakt</title>
+<meta charset="utf-8" />	
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta name="author" content="Odee - odee.pl" />
+<meta name="viewport" content="width=1024" />
+
+<link rel="icon" type="image/png" href="images/icon.png">
+<link rel="stylesheet" type="text/css" href="style.css"  />
+<link rel="stylesheet" type="text/css" href="css/fancybox/jquery.fancybox.css?v=2.1.2" media="screen" />
+<link rel="stylesheet" type="text/css" href="css/jquery.ad-gallery.css">
+<link rel="stylesheet" href="css/filtr/sunburst.css">
+<link rel="stylesheet" href="css/filtr/filtrify.css">
+<link rel="stylesheet" href="css/filtr/jPages.css">
+<link rel="stylesheet" href="css/filtr/animate.css">
+<style type="text/css">ul.ft-menu > li.ft-field > span.ft-label:before { content: "Wybierz"; } ul.ft-menu > li.ft-field > span.ft-label.ft-active:before { content: "Wybrano"; }</style>
+
+<script type="text/javascript" src="css/fancybox/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="css/fancybox/jquery.fancybox.js?v=2.1.3"></script>
+<script type="text/javascript" src="js/jquery.cycle.min.js"></script>
+<script type="text/javascript" src="js/cufon-yui.js"></script>
+<script type="text/javascript" src="js/font/Helvetica_Neue_LT_Pro_500.font.js"></script>
+<script type="text/javascript" src="js/font/Helvetica_Neue_LT_Pro_250.font.js"></script>
+<script type="text/javascript" src="js/font/Swis721LtEU_400.font.js"></script>
+<script type="text/javascript" src="js/jquery.pajinate.js"></script>
+<script type="text/javascript" src="js/jquery.listnav.js"></script>
+<script type="text/javascript" src="js/popup.js"></script>
+<script type="text/javascript" src="js/jquery.ad-gallery.js"></script>
+<script type="text/javascript" src="js/filtr/filtrify.js"></script>
+<script type="text/javascript" src="js/filtr/highlight.pack.js"></script>
+<script type="text/javascript" src="js/filtr/script.js"></script>
+<script type="text/javascript" src="js/filtr/filtrify.min.js"></script>
+<script type="text/javascript" src="js/filtr/jPages.min.js"></script>
+<script type="text/javascript" src="js/filtr/jquery.lazyload.min.js"></script>
+
+<script type="text/javascript">
+$(function() {	
+	var container = $("#container"),
+		pagination = $("#pagination");
+	function setLazyLoad () {
+		container.find("img").lazyload({
+			event : "turnPage",
+			effect : "fadeIn"
+		});
+    };
+	function setPagination () {
+		pagination.jPages({
+			containerID : "container",
+            perPage : 10,
+            direction : "auto",
+			
+            animation : "fadeInUp",
+            callback : function( pages, items ){
+                items.showing.find("img").trigger("turnPage");
+                items.oncoming.find("img").trigger("turnPage");
+				 $("#legend2").html("<span style='color:#a3224c'>Pozycje: </span>" + items.range.start + " - " + items.range.end + " z " + items.count);
+            }
+        });
+	};
+	$("select").change(function(){
+     var newPerPage = parseInt( $(this).val() );
+		destroyPagination();
+         setPagination1();        
+    });
+	function setPagination1 () {
+		pagination.jPages({
+			containerID : "container",
+            perPage : newPerPage,          
+            animation : "fadeInUp",      
+        });
+	};
+	function destroyPagination () { pagination.jPages("destroy"); };
+
+	setLazyLoad();
+	setPagination();
+
+	 var ft = $.filtrify("container", "placeHolder", {
+		block : "data-original",
+		close : true,		
+				
+        callback: function ( query, match, mismatch ) {
+			 if ( mismatch.length ) $("div#reset").show();
+            else $("div#reset").hide();
+			destroyPagination();
+            setPagination();
+			 if ( !mismatch.length ) {
+                $("#legend").html("<i></i>");
+            } else {
+                var category, tags, i, tag, legend = "<span class='filtrtyt'>Filtr:</span>";
+                for ( category in query ) {
+                    tags = query[category];
+                    if ( tags.length ) {
+                        legend += "";
+                        for ( i = 0; i < tags.length; i++ ) {
+                            tag = tags[i];
+                            legend += "<em class='filtrle'>" + tag + "</em>";
+                        };
+                        legend += "";
+                    };
+                };               
+                $("#legend").html( legend );
+            };
+            $('.ft-label').parent()			
+                .find('li[data-count=0]').hide().end()
+                .find(':not(li[data-count=0])').show().end()		
+		}		
+	});
+	 $("div#reset span").click(function() {
+        ft.reset();
+    });
+});
+
+
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+	Cufon.replace('.wa-wstecz, .wa-wstecz-of, .filters, .k-numer, .w-box-autor, .w-box-numer, .kart-next, .kart-prev, .kart-lacznie, .rej-naglowek, .slider-tytul, .newsletter-dziekuje, .naglowek-startowa, .s-news-tytul, .naglowek, .kalendarium-naglowek, .lista-naglowek, .oferta-naglowek, .footer-naglowek, .news-tytul, .w-news-wernisaz-tyt, .bold', { fontFamily: 'Helvetica Neue LT Pro', hover: {color: '#a3224c'}, });
+	Cufon.replace('.karta-rodzaj-nag-2, .karta-rodzaj-nag-1, .wystawy-rodzaj-nag-1, .w-box-tytul, .wystawy-rodzaj-nag-2, .wystawy-rodzaj-nag-1-act, .wystawy-rodzaj-nag-2-act, .kontakt-rodzaj-nag-1, .p-autor, .p-cena, .kontakt-rodzaj-nag-2, .kontakt-rodzaj-nag-1-act, .kontakt-rodzaj-nag-2-act, .wal-news-tytul, .wal-news-numer, .naglowek-kontakt, .k-tytul', { fontFamily: 'Helvetica Neue LT Pro', hover: {color: '#a3224c'}, });
+	Cufon.replace('.w-left-naglowek, .slider-opis, .w-news-tytul, .widok-naglowek, .w-news-data, .wa-news-tytul, .wa-news-data, .adres-kontakt, .light, .kontakt-all-naglowek, .oferta-top-naglowek, .a-naglowek, .ln-letters, .a-popularni, .a-tytul, .a-przedmioty, .a-litera ', { fontFamily: 'Swis721LtEU', hover: {color: '#b92e5b'}, });	
+	Cufon.replace('.news-zdjecie', { fontFamily: 'Helvetica Neue LT Pro2', hover: {color: '#b92e5b'}, });		
+	$(".ad-gallery").on("click", ".ad-image", function() { $.fancybox.open({ href : $(this).find("img").attr('src'), closeClick : true, helpers : { title: false } }); });
+	$(".zdjecie").fancybox({ helpers : { title: false, buttons: {} } });
+	$(".produkt-gallery-box").fancybox({ helpers : { title: false, buttons: {} } });
+	$('#myList').listnav({ initLetter: 'a',includeAll: false, includeOther: false, flagDisabled: true, noMatchText: 'Nie posiadamy w bazie autorów zaczynających się na taką literę',showCounts: false, cookieName: 'moja-lista' });
+	$('.film').fancybox({ openEffect : 'none',closeEffect : 'none','width' : 680, 'height' : 430, helpers : { media : {} } });
+	$('#slide-1').cycle({ fx: 'fade', speed: 1500, timeout: 6000, pager: '#slide-pag', pagerAnchorBuilder: function (index) { return '<a href="#"></a>'; } });
+	$('#slide-2').cycle({ fx: 'scrollHorz', speed: 500, timeout: 6000, prev:'#prev1',  next:'#next1' });
+	$('.ak-slider').cycle({ fx: 'fade', speed: 200, timeout: 0,pager:  '#slide-3-nav', pagerAnchorBuilder: function(idx, slide) { return '#slide-3-nav li:eq(' + idx + ')';  }, slideResize: true,containerResize: true,width: '100%',height: "450px",fit: 1, });
+	$("#reference-first").fancybox({ }).trigger("click");	
+});
+</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-114720141-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-114720141-1');
+</script>
+
+<!-- reCaptcha -->
+<script src='https://www.google.com/recaptcha/api.js'></script>
+
+</head>
+<body >
+
+<header id="wrapper">
+	<section id="wrapper-top">
+	<a href="http://sda.pl/"><img src="images/logo.png" id="logo" alt="Logo" /></a>
+	<div id="menu-top">
+		<form method="POST" action="szukaj">
+		<input type="submit" class="szukaj-icon" name="send" value="" />
+		<input type="text" name="search-wynik" class="szukaj-top" placeholder="szukaj..." required />
+		</form>		
+		<nav id="flags">
+			<ul>
+			<li><a href="polski" title="Polski">PL</a><img src="images/menu_hr.png" class="flag-hr" alt="" /></li>
+			<li><a href="english" title="English">EN</a></li>
+			</ul>
+		</nav>
+	</div>
+	<nav id="menu">
+		<ul>
+			<li><a href="aukcje,1,pl.html">Aukcje</a><img src="images/menu_hr.png" class="menu-hr" alt="" /></li><li><a href="wystawy,2,pl.html">Wystawy</a><img src="images/menu_hr.png" class="menu-hr" alt="" /></li><li><a href="oferta-galeryjna,3,pl.html">Oferta Galeryjna</a><img src="images/menu_hr.png" class="menu-hr" alt="" /></li><li><a href="jak-sprzedac,4,pl.html">Jak sprzedać</a><img src="images/menu_hr.png" class="menu-hr" alt="" /></li><li><a href="jak-kupic,5,pl.html">Jak kupić</a><img src="images/menu_hr.png" class="menu-hr" alt="" /></li><li><a href="uslugi,6,pl.html">Usługi</a><img src="images/menu_hr.png" class="menu-hr" alt="" /></li><li><a href="kalendarium,7,pl.html">Kalendarium</a><img src="images/menu_hr.png" class="menu-hr" alt="" /></li><li><a href="o-nas,8,pl.html">O nas</a><img src="images/menu_hr.png" class="menu-hr" alt="" /></li><li><a class="active" href="kontakt,9,pl.html">Kontakt</a></li>			
+		</ul>
+	</nav>
+	<div class="box-user">
+		<div id="rejestracja" style="display:none">
+
+<div class="rej-naglowek">Rejestracja</div>
+	<form method="post" action="rejestracja-pl">
+	<div class="rej-box">
+		<label for="imie" class="rej-text">Imię:</label>
+			<input type="text" name="imie" class="rej-input" value="" required>
+	</div>
+	<div class="rej-box">
+		<label for="nazwisko" class="rej-text">Nazwisko:</label>
+			<input type="text" name="nazwisko" class="rej-input" value="" required>
+	</div>
+	<div class="rej-box">
+		<label for="ulica" class="rej-text">Ulica:</label>
+			<input type="text" name="ulica" class="rej-input" value="" required>
+	</div>
+	<div class="rej-box">
+		<label for="miasto" class="rej-text">Miasto:</label>
+			<input type="text" name="miasto" class="rej-input" value="" required>
+	</div>
+	<div class="rej-box">
+		<label for="kod" class="rej-text">Kod pocztowy:</label>
+			<input type="text" name="kod" class="rej-input" value="" required>
+	</div>
+	<div class="rej-box">
+		<label for="kraj" class="rej-text">Kraj:</label>
+			
+			<select name="kraj" class="rej-select" required>
+				<option value="" selected="selected" disabled="disabled">Wybierz kraj</option> 
+				<option value="Polska">Poland</option> 
+				<option value="Arabia Saudyjska">Saudi Arabia</option> 
+				<option value="Serbia i Czarnogóra">Serbia and Montenegro</option> 
+				<option value="Bośnia i Herzegovina">Bosnia and Herzegovina</option>
+				<option value="Macedonia">Macedonia</option>
+				<option value="Bułgaria">Bulgaria</option>
+				<option value="Rumunia">Romania</option>
+				<option value="Czechy">Czech Republic</option> 
+				<option value="Słowacja">Slovakia</option> 
+				<option value="Litwa">Latvia</option> 	
+				<option value="United Kingdom">United Kingdom</option> 
+				<option value="United States">United States</option> 
+				<option value="France">France</option> 
+				<option value="Germany">Germany</option> 
+				<option value="Spain">Spain</option> 
+				<option value="Italy">Italy</option> 
+				<option value="Canada">Canada</option>
+			</select>
+	</div>
+	<div class="rej-box">
+		<label for="telefon" class="rej-text">Telefon:</label>
+			<input type="text" name="telefon" class="rej-input" value="" required>
+	</div>
+	<div class="rej-box">
+		<label for="fax" class="rej-text">Fax:</label>
+			<input type="text" name="fax" class="rej-input"  placeholder="opcjonalnie" value="">
+	</div>
+	<div class="rej-box">
+		<label for="email" class="rej-text">E-mail:</label>
+			<input type="text" name="email" class="rej-input" value="" required>
+	</div>
+	<div class="rej-box">
+		<label for="haslo" class="rej-text">Hasło:</label>
+			<input type="password" name="haslo" class="rej-input" value="" required>
+	</div>
+	<input type="text" value="3wvnqcut7kmf6eb5oix82daj190ypsrzgh4l" style="display:none;" name="act" />	<input type="submit" class="rej-submit" value="Zarejestruj">
+	
+	</form>
+</div>
+		
+<div id="logowanie" style="display:none">
+
+<div class="rej-naglowek">Logowanie</div>
+	<form method="post" action="kontakt,9,pl.html?log=zalogowany">
+	<div class="rej-box">
+		<label for="imie" class="rej-text">Login (e-mail):</label>
+			<input type="text" name="email" class="rej-input" value="" required>
+	</div>
+	<div class="rej-box">
+		<label for="haslo" class="rej-text">Hasło:</label>
+			<input type="password" name="haslo" class="rej-input" required>
+	</div>
+	<input type="submit" class="rej-submit" name="zaloguj" value="Zaloguj">	
+	</form>
+	<div class="rej-nowe"><a class="film" href="#rejestracja">Kliknij tutaj, aby utworzyć nowe konto</a></div>
+</div>	</div>
+	</section>
+</header>	
+
+<section id="middle-wrapper">	
+	<article id="middle">
+		<div class="kontakt-rodzaj"><div class="kontakt-rodzaj-nag-1-act">Adresy</div><div class="kontakt-rodzaj-nag-2"><a href="formularz-kontaktowy,29,pl.html">Formularz kontaktowy</a></div></div><div class="box-kontakt" ><header class="naglowek-kontakt">Sopot</header><img src="images/naglowek_kontakt_li.png" class="naglowek-kontakt-li" alt="" /><div class="adres-kontakt">ul. Boh. Monte Cassino 43</div><img src="images/naglowek_kontakt_hr.png" class="naglowek-kontakt-hr" alt="" /><div class="opis-kontakt"><table class="table-1" style="width: 100%;" align="left">
+<tbody>
+<tr>
+<td class="light" style="width: 250px;">Galeria sztuki dawnej<img style="float: right; margin-top: 5px;" title=" " src="images/twoje/opis_kontakt_arrow.png" alt=" " width="13" height="8" /></td>
+<td style="width: 105px;">&nbsp;</td>
+<td class="light" style="width: 250px;">Galeria sztuki nowoczesnej<img style="float: right; margin-top: 5px;" title=" " src="images/twoje/opis_kontakt_arrow.png" alt=" " width="13" height="8" /></td>
+<td style="width: 105px;">&nbsp;</td>
+<td class="light" style="width: 250px;">Filatelistyka/Numizmatyka<img style="float: right; margin-top: 5px;" title=" " src="images/twoje/opis_kontakt_arrow.png" alt=" " width="13" height="8" /></td>
+</tr>
+<tr>
+<td><img style="vertical-align: middle;" title=" " src="images/twoje/opis_kontakt_hr.png" alt=" " width="248" height="1" /></td>
+<td>&nbsp;</td>
+<td><img style="vertical-align: middle;" title=" " src="images/twoje/opis_kontakt_hr.png" alt=" " width="248" height="1" /></td>
+<td>&nbsp;</td>
+<td><img style="vertical-align: middle;" title=" " src="images/twoje/opis_kontakt_hr.png" alt=" " width="248" height="1" /></td>
+</tr>
+<tr>
+<td>
+<p>Telefon: <span class="baec5a81-e4d6-4674-97f3-e9220f0136c1" style="white-space: nowrap;">+48 58 550 16 05<a style="margin: 0px; border: currentColor; left: 0px; top: 0px; width: 16px; height: 16px; right: 0px; bottom: 0px; overflow: hidden; vertical-align: middle; float: none; display: inline; white-space: nowrap; position: static !important;" title="Call: +48 58 550 16 05" href="#"><img style="margin: 0px; border: currentColor; left: 0px; top: 0px; width: 16px; height: 16px; right: 0px; bottom: 0px; overflow: hidden; vertical-align: middle; float: none; display: inline; white-space: nowrap; position: static !important;" title="Call: +48 58 550 16 05" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAKLSURBVHjadJPfS5NhFMe/21xvuhXRyJAZroiSrJnbRdT7vrAf5HBaK5RABmEEwQIvkpZ/QRcWXdSFw5soKaF0F7qZeLO13mGBDpQsf5CoxVKHOt0Pctp2uvEdrzG/V+c553w/54HnPDIiQiGpPMETABoB2AAYd9MRAMMAvGmX+RcAyAoBVJ7gZQDtABworH4AHWmX+bOMZdkjCoXiUzabvcAwzPSsob5p/VTNY9GcdpnxdmYZ9wJThSCtCr1e/4XjuNPd3d1KjUZzaGbI27ysqzGQoggAsLa1A7ehArrDxfDNr0oBlQB+wmKxbJFEL968SxoamsjkHaPU9l9piUo6A0RE1DG2QCWdASrpDAzJM5kMI8XecdjVxfEl+K9dxFgsgUvvR6HyBKHyBAEATyKLeGSsENuNcqk5kUjEGm7fzcYqr0ClVODl99+YXEvl6+c1amjVe+ahiGGYaUEQKnmeh91uL43rqheixjpdmzCL11er0PcjhrTLvMfUJsyKYUSeyWQ6enp6tgCgrKxsfbP8bB8AdE1G89cOReMAgOv+Cag8QXRNRkXAsDwcDr+am5tLCYKA3t7eo2dG+1vVK/MfpRPtA+MIReMYaKj+/xm9MiICx3EmpVL5wefzFavValis1u1vvHMkdfykCQC0kSGUTo+Ajmnx1dSC7IGD+UUCEYGIwLKsyWazrSeTSSIiMpnNf7Ttz5+ec96fr7/VnE0mk+QfHMzV3WjcKH/4rEr05QGFIA6HY4llWRLPRER+v3/HYrFMFQSIkNra2tVQKJSlfcSyLO0LECFWq3XF6XRGA4HAptTsdrsXeZ6fEHtl+31nAOA4rkUulz/I5XL63dQGgHEAN8Ph8AYA/BsAt4ube4GblQIAAAAASUVORK5CYII=" alt="" /></a></span></p>
+<p>e-mail: <a href="mailto:sopot@sda.pl">sopot@sda.pl</a></p>
+</td>
+<td>&nbsp;</td>
+<td>
+<p>Telefon: <span class="baec5a81-e4d6-4674-97f3-e9220f0136c1" style="white-space: nowrap;">+48 58 551 22 89<a style="margin: 0px; border: currentColor; left: 0px; top: 0px; width: 16px; height: 16px; right: 0px; bottom: 0px; overflow: hidden; vertical-align: middle; float: none; display: inline; white-space: nowrap; position: static !important;" title="Call: +48 58 551 22 89" href="#"><img style="margin: 0px; border: currentColor; left: 0px; top: 0px; width: 16px; height: 16px; right: 0px; bottom: 0px; overflow: hidden; vertical-align: middle; float: none; display: inline; white-space: nowrap; position: static !important;" title="Call: +48 58 551 22 89" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAKLSURBVHjadJPfS5NhFMe/21xvuhXRyJAZroiSrJnbRdT7vrAf5HBaK5RABmEEwQIvkpZ/QRcWXdSFw5soKaF0F7qZeLO13mGBDpQsf5CoxVKHOt0Pctp2uvEdrzG/V+c553w/54HnPDIiQiGpPMETABoB2AAYd9MRAMMAvGmX+RcAyAoBVJ7gZQDtABworH4AHWmX+bOMZdkjCoXiUzabvcAwzPSsob5p/VTNY9GcdpnxdmYZ9wJThSCtCr1e/4XjuNPd3d1KjUZzaGbI27ysqzGQoggAsLa1A7ehArrDxfDNr0oBlQB+wmKxbJFEL968SxoamsjkHaPU9l9piUo6A0RE1DG2QCWdASrpDAzJM5kMI8XecdjVxfEl+K9dxFgsgUvvR6HyBKHyBAEATyKLeGSsENuNcqk5kUjEGm7fzcYqr0ClVODl99+YXEvl6+c1amjVe+ahiGGYaUEQKnmeh91uL43rqheixjpdmzCL11er0PcjhrTLvMfUJsyKYUSeyWQ6enp6tgCgrKxsfbP8bB8AdE1G89cOReMAgOv+Cag8QXRNRkXAsDwcDr+am5tLCYKA3t7eo2dG+1vVK/MfpRPtA+MIReMYaKj+/xm9MiICx3EmpVL5wefzFavValis1u1vvHMkdfykCQC0kSGUTo+Ajmnx1dSC7IGD+UUCEYGIwLKsyWazrSeTSSIiMpnNf7Ttz5+ec96fr7/VnE0mk+QfHMzV3WjcKH/4rEr05QGFIA6HY4llWRLPRER+v3/HYrFMFQSIkNra2tVQKJSlfcSyLO0LECFWq3XF6XRGA4HAptTsdrsXeZ6fEHtl+31nAOA4rkUulz/I5XL63dQGgHEAN8Ph8AYA/BsAt4ube4GblQIAAAAASUVORK5CYII=" alt="" /></a></span></p>
+<p>e-mail: <a href="mailto:modern@sda.pl">modern@sda.pl</a></p>
+</td>
+<td>&nbsp;</td>
+<td>
+<p>Telefon: + 48 58 550 28 19</p>
+<p>e-mail: <a href="mailto:filatelistyka@sda.pl">filatelistyka@sda.pl</a></p>
+<p>e-mail: <a href="mailto:filatela@znaczki-monety.pl">filatela@znaczki-monety.pl</a></p>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>Godziny otwarcia:</td>
+<td>&nbsp;</td>
+<td>Godziny otwarcia:</td>
+<td>&nbsp;</td>
+<td>Godziny otwarcia:</td>
+</tr>
+<tr>
+<td><img style="vertical-align: middle;" title=" " src="images/twoje/opis_kontakt_hr.png" alt=" " width="248" height="1" /></td>
+<td>&nbsp;</td>
+<td><img style="vertical-align: middle;" title=" " src="images/twoje/opis_kontakt_hr.png" alt=" " width="248" height="1" /></td>
+<td>&nbsp;</td>
+<td><img style="vertical-align: middle;" title=" " src="images/twoje/opis_kontakt_hr.png" alt=" " width="248" height="1" /></td>
+</tr>
+<tr>
+<td>
+<p>poniedziałek - piątek 11.00 - 18.00</p>
+<p>sobota: 11.00 - 15.00</p>
+</td>
+<td>&nbsp;</td>
+<td>
+<p>poniedziałek - piątek: 11.00 - 18.00</p>
+<p>sobota: 11.00 - 15.00</p>
+</td>
+<td>&nbsp;</td>
+<td>
+<p>poniedziałek - piątek 12.00 - 18.00</p>
+<p>sobota: 11.00 - 15.00&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td valign="middle">
+<p><img title=" " src="images/twoje/opis_kontakt_hr.png" alt=" " width="248" height="1" /></p>
+</td>
+<td>&nbsp;</td>
+<td>
+<p><img title=" " src="images/twoje/opis_kontakt_hr.png" alt=" " width="248" height="1" /></p>
+</td>
+<td>&nbsp;</td>
+<td>
+<p><img title=" " src="images/twoje/opis_kontakt_hr.png" alt=" " width="248" height="1" /></p>
+</td>
+</tr>
+<tr>
+<td><span style="text-decoration: underline;"><a href="sopot,25,pl.html">zobacz szczeg&oacute;ły</a></span>&nbsp;&nbsp;<a href="sopot,25,pl.html"><img title=" " src="images/kontakt_sprawdz_arrow.png" alt=" " width="7" height="5" /></a></td>
+<td>&nbsp;</td>
+<td>
+<p><span style="text-decoration: underline;"><a href="sopot,52,pl.html">zobacz szczeg&oacute;ły</a></span>&nbsp;&nbsp;<a href="sopot-galeria-sztuki-nowoczesnej,52,pl.html"><img title=" " src="images/kontakt_sprawdz_arrow.png" alt=" " width="7" height="5" /></a></p>
+</td>
+<td>&nbsp;</td>
+<td>
+<p><span style="text-decoration: underline;"><a href="http://www.znaczki-monety.pl">www.znaczki-monety.pl</a></span>&nbsp;&nbsp;<a href="http://www.znaczki-monety.pl"><img title=" " src="images/kontakt_sprawdz_arrow.png" alt=" " width="7" height="5" /></a></p>
+</td>
+</tr>
+</tbody>
+</table></div></div><div class="box-kontakt-last" ><header class="naglowek-kontakt">Gdańsk</header><img src="images/naglowek_kontakt_li.png" class="naglowek-kontakt-li" alt="" /><div class="adres-kontakt">ul. Długa 2/3</div><img src="images/naglowek_kontakt_hr.png" class="naglowek-kontakt-hr" alt="" /><div class="opis-kontakt"><table style="width: 100%;" border="0" align="left">
+<tbody>
+<tr>
+<td style="width: 25px;"><img style="vertical-align: middle;" title=" " src="images/twoje/opis_kontakt_arrow.png" alt=" " width="13" height="8" /></td>
+<td><strong>Telefon:</strong></td>
+<td style="width: 85px;">&nbsp;</td>
+<td style="width: 25px;"><img style="vertical-align: middle;" title=" " src="images/twoje/opis_kontakt_arrow.png" alt=" " width="13" height="8" /></td>
+<td><strong>Fax:</strong></td>
+<td style="width: 85px;">&nbsp;</td>
+<td style="width: 25px;"><img style="vertical-align: middle;" title=" " src="images/twoje/opis_kontakt_arrow.png" alt=" " width="13" height="8" /></td>
+<td><strong>E-mail:</strong></td>
+<td style="width: 120px;">&nbsp;</td>
+<td style="width: 250px;"><strong>Godziny otwarcia:</strong></td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>+ 48 58 301 05 54</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>+48 58 301 41 27</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>
+<p><a href="mailto:gdansk@sda.pl">gdansk@sda.pl</a></p>
+</td>
+<td>&nbsp;</td>
+<td><img style="vertical-align: middle;" title=" " src="images/twoje/opis_kontakt_hr.png" alt=" " width="248" height="1" /></td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>
+<p>poniedziałek - piątek: 11.00 - 18.00</p>
+<p>sobota: 11.00 - 15.00</p>
+</td>
+</tr>
+<tr>
+<td colspan="10">&nbsp;<span style="text-decoration: underline;"><a href="gdansk,26,pl.html">zobacz szczeg&oacute;ły</a></span>&nbsp;&nbsp;<a href="gdansk,26,pl.html"><img title=" " src="images/kontakt_sprawdz_arrow.png" alt=" " width="7" height="5" /></a></td>
+</tr>
+</tbody>
+</table></div></div><div class="box-kontakt" ><header class="naglowek-kontakt">Kraków</header><img src="images/naglowek_kontakt_li.png" class="naglowek-kontakt-li" alt="" /><div class="adres-kontakt">Rynek Główny 43</div><img src="images/naglowek_kontakt_hr.png" class="naglowek-kontakt-hr" alt="" /><div class="opis-kontakt"><table style="width: 100%;" border="0" align="left">
+<tbody>
+<tr>
+<td style="width: 25px;"><img style="vertical-align: middle;" title=" " src="images/twoje/opis_kontakt_arrow.png" alt=" " width="13" height="8" /></td>
+<td><strong>Telefon:</strong></td>
+<td style="width: 85px;">&nbsp;</td>
+<td style="width: 25px;"><img style="vertical-align: middle;" title=" " src="images/twoje/opis_kontakt_arrow.png" alt=" " width="13" height="8" /></td>
+<td><strong>Fax:</strong></td>
+<td style="width: 85px;">&nbsp;</td>
+<td style="width: 25px;"><img style="vertical-align: middle;" title=" " src="images/twoje/opis_kontakt_arrow.png" alt=" " width="13" height="8" /></td>
+<td><strong>E-mail:</strong></td>
+<td style="width: 120px;">&nbsp;</td>
+<td style="width: 250px;"><strong>Godziny otwarcia:</strong></td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>+ 48 12 429 12 17</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>+ 48 12 421 23 99</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>
+<p><a href="mailto:krakow@sda.pl">krakow@sda.pl</a></p>
+<p><a href="mailto:mlodasztuka.krakow@sda.pl">mlodasztuka.krakow@sda.pl</a></p>
+</td>
+<td>&nbsp;</td>
+<td><img style="vertical-align: middle;" title=" " src="images/twoje/opis_kontakt_hr.png" alt=" " width="248" height="1" /></td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>
+<p>poniedziałek - piątek: 11.00 - 18.00</p>
+<p>sobota: 11.00 - 14.00</p>
+</td>
+</tr>
+<tr>
+<td colspan="2">&nbsp;&nbsp;<span style="text-decoration: underline;" data-mce-mark="1"><a href="krakow,27,pl.html">zobacz szczeg&oacute;ły</a></span>&nbsp;&nbsp;<a href="krakow,27,pl.html"><img title=" " src="images/kontakt_sprawdz_arrow.png" alt=" " width="7" height="5" /></a></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table></div></div><div class="box-kontakt-last" ><header class="naglowek-kontakt">Warszawa</header><img src="images/naglowek_kontakt_li.png" class="naglowek-kontakt-li" alt="" /><div class="adres-kontakt">ul. Nowy Świat 54/56</div><img src="images/naglowek_kontakt_hr.png" class="naglowek-kontakt-hr" alt="" /><div class="opis-kontakt"><table style="width: 100%;" border="0" align="left">
+<tbody>
+<tr>
+<td style="width: 25px;"><img style="vertical-align: middle;" title=" " src="images/twoje/opis_kontakt_arrow.png" alt=" " width="13" height="8" /></td>
+<td><strong>Telefon:</strong></td>
+<td style="width: 85px;">&nbsp;</td>
+<td style="width: 25px;"><img style="vertical-align: middle;" title=" " src="images/twoje/opis_kontakt_arrow.png" alt=" " width="13" height="8" /></td>
+<td><strong>Fax:</strong></td>
+<td style="width: 85px;">&nbsp;</td>
+<td style="width: 25px;"><img style="vertical-align: middle;" title=" " src="images/twoje/opis_kontakt_arrow.png" alt=" " width="13" height="8" /></td>
+<td><strong>E-mail:</strong></td>
+<td style="width: 120px;">&nbsp;</td>
+<td style="width: 250px;"><strong>Godziny otwarcia:</strong></td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>+ 48 22 828 96 98</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>+48 22 828 96 98</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>
+<p><a href="mailto:warszawa@sda.pl">warszawa@sda.pl</a></p>
+<p><a href="mailto:mlodasztuka@sda.pl">mlodasztuka@sda.pl</a></p>
+</td>
+<td>&nbsp;</td>
+<td><img style="vertical-align: middle;" title=" " src="images/twoje/opis_kontakt_hr.png" alt=" " width="248" height="1" /></td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>
+<p>poniedziałek - piątek: 11.00-19.00</p>
+<p>sobota: 11.00 - 15.00</p>
+</td>
+</tr>
+<tr>
+<td colspan="2">&nbsp;<span style="text-decoration: underline;"><a href="warszawa,28,pl.html">zobacz szczeg&oacute;ły</a></span>&nbsp;&nbsp;<a href="warszawa,28,pl.html"><img title=" " src="images/kontakt_sprawdz_arrow.png" alt=" " width="7" height="5" /></a></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table></div></div><div class="box-kontakt" ><header class="naglowek-kontakt">Bydgoszcz</header><img src="images/naglowek_kontakt_li.png" class="naglowek-kontakt-li" alt="" /><div class="adres-kontakt">ul. Jagiellońska 47</div><img src="images/naglowek_kontakt_hr.png" class="naglowek-kontakt-hr" alt="" /><div class="opis-kontakt"><table style="width: 100%;" border="0" align="left">
+<tbody>
+<tr>
+<td style="width: 25px;"><img style="vertical-align: middle;" title=" " src="images/twoje/opis_kontakt_arrow.png" alt=" " width="13" height="8" /></td>
+<td><strong>Telefon:</strong></td>
+<td style="width: 85px;">&nbsp;</td>
+<td style="width: 25px;"><img style="vertical-align: middle;" title=" " src="images/twoje/opis_kontakt_arrow.png" alt=" " width="13" height="8" /></td>
+<td><strong>Fax:</strong></td>
+<td style="width: 85px;">&nbsp;</td>
+<td style="width: 25px;"><img style="vertical-align: middle;" title=" " src="images/twoje/opis_kontakt_arrow.png" alt=" " width="13" height="8" /></td>
+<td><strong>E-mail:</strong></td>
+<td style="width: 120px;">&nbsp;</td>
+<td style="width: 250px;"><strong>Godziny otwarcia:</strong></td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>+ 48&nbsp;<span data-mce-mark="1">602 593 826</span></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>
+<p><a href="mailto:gdansk@sda.pl">bydgoszcz@sda.pl</a></p>
+</td>
+<td>&nbsp;</td>
+<td><img style="vertical-align: middle;" title=" " src="images/twoje/opis_kontakt_hr.png" alt=" " width="248" height="1" /></td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>
+<p>poniedziałek - piątek: 11.00 - 19.00</p>
+<p>sobota - niedziela (handlowa): 10.00 - 16.00</p>
+</td>
+</tr>
+<tr>
+<td colspan="10">&nbsp;<span style="text-decoration: underline;" data-mce-mark="1"><a href="bydgoszcz,17053,pl.html">zobacz szczeg&oacute;ły</a></span>&nbsp;&nbsp;<a href="gdansk,26,pl.html"><img title=" " src="images/kontakt_sprawdz_arrow.png" alt=" " width="7" height="5" /></a></td>
+</tr>
+</tbody>
+</table></div></div>	</article>
+</section>	
+<footer >
+	<section id="footer-wrapper">
+	<div id="footer-1">	
+		<img src="images/footer_icon.png" class="footer-icon" alt="" /><div class="footer-naglowek"><span style="color:#6b6b6b">Nasze</span>  galerie</div><img src="images/footer_arrow.png" class="footer-arrow" alt="" /><div class="footer-opis"><ul><li><a href="sopot,25,pl.html">Galeria Sztuki Dawnej w Sopocie</a></li><li><a href="sopot,52,pl.html">Galeria Sztuki Nowoczesnej w Sopocie</a></li><li><a href="gdansk,26,pl.html">Galeria w Gdańsku</a></li><li><a href="krakow,27,pl.html">Galeria w Krakowie</a></li><li><a href="warszawa,28,pl.html">Galeria w Warszawie</a></li><li><a href="bydgoszcz,17053,pl.html">Galeria w Bydgoszczy</a></li></ul></div>	
+	</div>
+
+	
+	<div id="footer-2">
+
+		<div class="footer-naglowek"><a href="index-artystow,41,pl.html"><span style="color:#d9b15e">Index</span> artystów</a></div><img src="images/footer_arrow.png" class="footer-arrow" alt="" />
+
+	</div>
+
+
+	<div id="footer-3">
+		<div class="footer-naglowek"><span style="color:#6b6b6b">Zapisz się do</span> newslettera:</div><img src="images/footer_arrow.png" class="footer-arrow" alt="" />
+		<form method="post" id="newsletter" action="newsletter-pl">
+		<input type="text" name="e-mail" id="email" class="footer-newsletter" placeholder="wpisz adres e-mail" required />
+		<input type="text" value="7ogt49n2bk3s1cjdye8wvxzaf05iqulpm6rh" style="display:none;" name="act" />		
+		<!--<a href="#send" id="" onClick="$(this).parents('form').submit();" class="footer-submit"></a>-->
+		</form>
+				
+		<img src="images/footer_icon_hr.png" class="footer-icon-hr" alt="" />
+		<a target="_blank" href="http://www.facebook.com/pages/Sopocki-Dom-Aukcyjny-Oddział-Sztuki-Współczesnej/175471805834015"><img src="images/footer_icon_fb.png" class="foote-icon-fb" alt="" /></a>
+		
+	</div>
+	<div id="footer-4">
+		<div class="footer-opis-4"><p>Sopocki Dom Aukcyjny Sp. z o.o., ul. Boh. Monte Cassino 43, 81-768 Sopot, NIP: 585-02-06-392, REGON:&nbsp;190528618&nbsp; |&nbsp; <a title="Polityka Prywatności" href="http://files.sda.pl/files/polityka_prywatnosci.pdf" target="_blank">Polityka Prywatności</a></p>
+<p><sup><span><span>Treści zawarte w niniejszej witrynie mają charakter wyłącznie informacyjny i nie stanowią oferty handlowej w rozumieniu art. 66 &sect; 1, 66 1 &sect; 1 i następnych Kodeksu Cywilnego.</span></span></sup></p></div>	
+	<div class="odee"><a href="http://www.odee.pl" title="Projekt i wykonanie Odee.pl" class="odee-tip"><img src="images/odee.png" alt="Projekt i wykonanie Odee.pl"/></a></div>
+	</div>
+	</section>
+</footer>
+<script src="js/cookies.js" type="text/javascript"></script>
+</body>
+</html>

@@ -16,6 +16,10 @@ public class RegExDemo {
 
         //wszystkie slowa RegExem (lepsze rozwiazanie to po prostu String.split(" ");
         RegExUtil.printRegexResults(" \\w{1,40} ", exampleText1);
+
+        //zad. 1
+        final String text = "Secret John 007, kom.: 777-999-000, lives at SchwabStrasse 7 @Stuttgart";
+        RegExUtil.printRegexResults("[A-Za-z]{3,12}", text);
     }
 
 }
